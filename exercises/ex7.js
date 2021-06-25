@@ -3,7 +3,7 @@
 "use strict";
 
 var util = require("util");
-// var childProc = require("child_process");
+var childProc = require("child_process");
 
 
 // ************************************
@@ -21,4 +21,9 @@ main().catch(console.error);
 
 async function main() {
 	// console.log(`Load testing http://localhost:${HTTP_PORT}...`);
+
+	var child = childProc.spawn("node", ["ex7-child.js"]);
+	child.on("exit", function(code){
+		console.log("Child finished", code)
+	})
 }
